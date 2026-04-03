@@ -2,9 +2,9 @@ import streamlit as st
 import pandas as pd
 import joblib
 
-st.set_page_config(page_title="Predicción Mn", page_icon="🔬", layout="centered")
+st.set_page_config(page_title="Predicción MnO2", page_icon="🔬", layout="centered")
 
-st.title("🔬 Predicción de Concentración de Manganeso")
+st.title("🔬 Predicción de Concentración de MnO2")
 st.subheader("Electroobtención de Zinc - Modelo XGBoost")
 
 # Cargar modelos
@@ -32,7 +32,7 @@ fe = st.sidebar.number_input("Fe (mg/L)", 0.0, 10.0, 3.0)
 sb = st.sidebar.number_input("Sb (mg/L)", 0.0, 0.1, 0.03)
 cu = st.sidebar.number_input("Cu (mg/L)", 0.0, 0.5, 0.1)
 
-if st.button("Predecir Concentración de Mn", type="primary"):
+if st.button("Predecir Concentración de MnO2", type="primary"):
     input_data = {
         'T de EA (°C)': temp,
         'Zn Sol Pura (g/L)': zn_pura,
@@ -54,7 +54,7 @@ if st.button("Predecir Concentración de Mn", type="primary"):
     prediccion = modelo.predict(scaled_input)[0]
     es_outlier = detector_outliers.predict(scaled_input)[0]
 
-    st.success(f"**Concentración de Mn predicha: {prediccion:.2f} g/L**")
+    st.success(f"**Concentración de MnO2 predicha: {prediccion:.2f} g/L**")
 
     if es_outlier == 1:
         st.info("✅ Parámetros dentro del rango de datos. Predicción confiable.")
